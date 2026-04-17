@@ -562,6 +562,20 @@ img {
         white-space: nowrap;
     }
 
+    .quiz-options--count-5 {
+        gap: 10px;
+        margin-top: 22px;
+    }
+
+    .quiz-options--count-5 .quiz-option {
+        min-height: 112px;
+        padding: 10px 12px;
+    }
+
+    .quiz-options--count-5 .quiz-option__image {
+        height: 72px;
+    }
+
     .quiz-step__lead {
         gap: 0;
         margin-top: 28px;

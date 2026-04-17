@@ -1,0 +1,148 @@
+{% extends 'base.html.twig' %}
+
+{% macro render_slide(slide, flow, isFirst) %}
+    <div
+        class="quiz-step quiz-step--{{ slide.id }} quiz-step--{{ flow }} {{ isFirst ? 'is-active' : '' }} {{ slide.type == 'contact' ? 'quiz-step--final' : '' }}"
+        data-flow="{{ flow }}"
+        data-step="{{ slide.step }}"
+        data-bg="{{ slide.backgroundImage }}"
+        data-progress-text="{{ slide.progressText }}"
+        data-progress-width="{{ slide.progressWidth }}"
+        data-slide-id="{{ slide.id }}"
+    >
+        <p class="quiz-step__counter">{{ slide.counter }}</p>
+        <h2 class="quiz-step__title">{{ slide.title }}</h2>
+        {% if slide.subtitle is defined and slide.subtitle %}
+            <p class="quiz-step__subtitle">{{ slide.subtitle }}</p>
+        {% endif %}
+
+        {% if slide.type == 'options' %}
+            <div class="quiz-options quiz-options--{{ slide.id }} quiz-options--count-{{ slide.options|length }}">
+                {% for option in slide.options %}
+                    <button
+                        class="quiz-option quiz-option--{{ slide.id }}"
+                        type="button"
+                        data-flow="{{ flow }}"
+                        data-field="{{ slide.field }}"
+                        data-title="{{ slide.title }}"
+                        data-label="{{ option.label }}"
+                        data-value="{{ option.value }}"
+                    >
+                        {% if option.image is defined and option.image %}
+                            <span class="quiz-option__image">
+                                <img
+                                    src="{{ option.image }}"
+                                    alt=""
+                                    {% if option.imagePosition is defined and option.imagePosition %}
+                                        style="object-position: {{ option.imagePosition }};"
+                                    {% endif %}
+                                >
+                            </span>
+                        {% endif %}
+                        <span class="quiz-option__label">{{ option.label }}</span>
+                    </button>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="quiz-step__lead">
+                <strong>{{ slide.leadTitle }}</strong>
+                <span>{{ slide.leadText }}</span>
+            </div>
+
+            <form class="quiz-form" data-lead-form data-flow="{{ flow }}" novalidate>
+                <label class="quiz-form__label" for="quiz-phone-{{ flow }}">{{ slide.formLabel }}</label>
+                <div class="quiz-form__row">
+                    <label class="quiz-form__phone" for="quiz-phone-{{ flow }}">
+                        <input
+                            class="quiz-form__input"
+                            id="quiz-phone-{{ flow }}"
+                            name="phone"
+                            type="tel"
+                            inputmode="numeric"
+                            placeholder="{{ slide.phonePlaceholder }}"
+                            autocomplete="tel-national"
+                            required
+                        >
+                    </label>
+                    <button class="quiz-form__submit" type="submit" data-submit-button>{{ slide.buttonText }}</button>
+                </div>
+                {% if slide.phoneNote is defined and slide.phoneNote %}
+                    <p class="quiz-form__note">{{ slide.phoneNote }}</p>
+                {% endif %}
+                <p class="quiz-form__error" data-phone-error hidden>Введите корректный телефон</p>
+                <p class="quiz-form__success" data-success-message hidden>{{ slide.successMessage }}</p>
+            </form>
+        {% endif %}
+    </div>
+{% endmacro %}
+
+{% import _self as quiz %}
+
+{% block title %}Квиз BRUSCHATKA.RU{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="/static/quiz.css">
+{% endblock %}
+
+{% block body %}
+    {% set desktopSlides = slides %}
+    {% set mobileSlides = config.mobileSlides|default([]) %}
+    {% set firstSlide = desktopSlides|first %}
+    <main
+        class="quiz-page"
+        style="--quiz-page-bg: url('{{ config.general.pageBackgroundImage }}'); --quiz-mobile-page-bg: url('{{ config.general.mobilePageBackgroundImage|default(config.general.pageBackgroundImage) }}');"
+    >
+        <div class="page-backdrop" aria-hidden="true"></div>
+
+        <section class="quiz-shell" aria-label="Квиз подбора камня">
+            <div class="quiz-shell__intro">
+                <h1 class="quiz-shell__headline">
+                    {{ config.general.headlineBase }}<br>
+                    <span>{{ config.general.headlineAccent }}</span>
+                </h1>
+            </div>
+
+            <div class="quiz-card">
+                <div
+                    class="quiz-card__bg"
+                    data-quiz-background
+                    style="background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('{{ firstSlide.backgroundImage }}');"
+                ></div>
+                <div class="quiz-card__gradient"></div>
+                <div class="quiz-complete" data-quiz-complete hidden>
+                    <div class="quiz-complete__inner">
+                        <p class="quiz-complete__eyebrow">Спасибо за ваше обращение</p>
+                        <h2 class="quiz-complete__title">Заявка получена</h2>
+                        <p class="quiz-complete__text">Менеджер BRUSCHATKA.RU свяжется с вами и подготовит расчет.</p>
+                        <div class="quiz-complete__loader" aria-hidden="true">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+
+                {% for slide in desktopSlides %}
+                    {{ quiz.render_slide(slide, 'desktop', loop.first) }}
+                {% endfor %}
+
+                {% for slide in mobileSlides %}
+                    {{ quiz.render_slide(slide, 'mobile', loop.first) }}
+                {% endfor %}
+
+                <div class="quiz-progress">
+                    <span class="quiz-progress__text" data-progress-label>{{ firstSlide.progressText }}</span>
+                    <span class="quiz-progress__line">
+                        <span class="quiz-progress__value" data-progress-fill style="width: {{ firstSlide.progressWidth }}%"></span>
+                    </span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script type="application/json" data-quiz-config>{{ config|json_encode(constant('JSON_UNESCAPED_UNICODE'))|raw }}</script>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="/static/quiz.js"></script>
+{% endblock %}

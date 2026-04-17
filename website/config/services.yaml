@@ -1,0 +1,23 @@
+parameters:
+    quiz_config_path: '%kernel.project_dir%/data/quiz-config.json'
+    quiz_leads_path: '%kernel.project_dir%/data/quiz-leads.json'
+    quiz_upload_path: '%kernel.project_dir%/public/uploads/quiz'
+    quiz_lead_to: '%env(QUIZ_LEAD_TO)%'
+    quiz_mail_from: '%env(MAILER_FROM_EMAIL)%'
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+        bind:
+            string $quizConfigPath: '%quiz_config_path%'
+            string $quizLeadsPath: '%quiz_leads_path%'
+            string $quizUploadPath: '%quiz_upload_path%'
+            string $quizLeadTo: '%quiz_lead_to%'
+            string $quizMailFrom: '%quiz_mail_from%'
+
+    App\:
+        resource: '../src/'
+        exclude:
+            - '../src/Kernel.php'

@@ -1,0 +1,15 @@
+.DS_Store
+
+# root leftovers
+/assets/
+
+# dashboard
+/dashboard/node_modules/
+/dashboard/dist/
+
+# website runtime
+/website/vendor/
+/website/var/
+/website/public/admin/
+/website/.env.local
+/website/.env.*.local

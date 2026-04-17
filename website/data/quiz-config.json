@@ -1,0 +1,223 @@
+{
+  "general": {
+    "headlineBase": "ПОДБЕРЕМ КАМЕНЬ ПОД ВАШУ ЗАДАЧУ,",
+    "headlineAccent": "ЗАФИКСИРУЕМ ЦЕНУ 2025 ГОДА",
+    "submitMode": "success",
+    "redirectUrl": "https://bruschatka.ru/",
+    "metrikaCounterId": 101014580,
+    "pageBackgroundImage": "/uploads/quiz/figma-desktop-page-bg.jpg",
+    "mobilePageBackgroundImage": "/uploads/quiz/figma-mobile-page-bg.jpg",
+    "leadEmails": [
+      "zaikinalexandr@gmail.com",
+      "info@bruschatka.ru"
+    ]
+  },
+  "slides": [
+    {
+      "id": "area",
+      "type": "options",
+      "field": "area",
+      "step": 1,
+      "counter": "Вопрос 1 из 4",
+      "title": "Примерная площадь мощения?",
+      "backgroundImage": "/uploads/quiz/figma-desktop-card-bg.jpg",
+      "progressText": "Готово 33%",
+      "progressWidth": 41.63,
+      "options": [
+        {
+          "label": "От 50-100",
+          "value": "50-100",
+          "image": "/uploads/quiz/figma-area-50-100.jpg"
+        },
+        {
+          "label": "100-200",
+          "value": "100-200",
+          "image": "/uploads/quiz/figma-area-100-200.jpg"
+        },
+        {
+          "label": "200-400",
+          "value": "200-400",
+          "image": "/uploads/quiz/figma-area-200-400.jpg"
+        },
+        {
+          "label": "400+",
+          "value": "400-plus",
+          "image": "/uploads/quiz/figma-area-400-plus.jpg"
+        }
+      ]
+    },
+    {
+      "id": "color",
+      "type": "options",
+      "field": "color",
+      "step": 2,
+      "counter": "Вопрос 2 из 4",
+      "title": "Какой цвет подходит?",
+      "backgroundImage": "/uploads/quiz/figma-desktop-card-bg.jpg",
+      "progressText": "Готово 0%",
+      "progressWidth": 7.99,
+      "options": [
+        {
+          "label": "Серый",
+          "value": "gray",
+          "image": "/uploads/quiz/figma-color-gray.jpg"
+        },
+        {
+          "label": "Темный",
+          "value": "dark",
+          "image": "/uploads/quiz/figma-color-dark.jpg"
+        },
+        {
+          "label": "Зеленый",
+          "value": "green",
+          "image": "/uploads/quiz/figma-color-green.jpg"
+        },
+        {
+          "label": "Бордовый",
+          "value": "burgundy",
+          "image": "/uploads/quiz/figma-color-burgundy.jpg"
+        },
+        {
+          "label": "Природный",
+          "value": "natural",
+          "image": "/uploads/quiz/figma-color-natural.jpg"
+        }
+      ]
+    },
+    {
+      "id": "finish",
+      "type": "options",
+      "field": "finish",
+      "step": 3,
+      "counter": "Вопрос 3 из 4",
+      "title": "Какую обработку рассматриваете?",
+      "backgroundImage": "/uploads/quiz/figma-desktop-card-bg.jpg",
+      "progressText": "Готово 33%",
+      "progressWidth": 41.63,
+      "options": [
+        {
+          "label": "Колотая",
+          "value": "chipped",
+          "image": "/uploads/quiz/figma-finish-chipped.jpg"
+        },
+        {
+          "label": "Пиленая",
+          "value": "sawn",
+          "image": "/uploads/quiz/figma-finish-sawn.jpg"
+        },
+        {
+          "label": "Галтованная",
+          "value": "tumbled",
+          "image": "/uploads/quiz/figma-finish-tumbled.jpg"
+        },
+        {
+          "label": "Пока не знаю",
+          "value": "unknown",
+          "image": "/uploads/quiz/figma-finish-unknown.jpg"
+        }
+      ]
+    },
+    {
+      "id": "contact",
+      "type": "contact",
+      "step": 4,
+      "counter": "Вопрос 4 из 4",
+      "title": "Теперь стало понятнее 😌",
+      "backgroundImage": "/uploads/quiz/figma-desktop-card-bg.jpg",
+      "progressText": "Готово 66%",
+      "progressWidth": 73.86,
+      "leadTitle": "Рассчитаем точную стоимость",
+      "leadText": "и пришлем реальные фото со склада и новых объектов",
+      "formLabel": "Куда отправить расчет?",
+      "phoneNote": "Свяжемся с вами один раз, без навязчивых звонков!",
+      "phonePlaceholder": "+7 (000) 000-00-00*",
+      "buttonText": "Получить расчет",
+      "successMessage": "Спасибо, заявку получили."
+    }
+  ],
+  "mobileSlides": [
+    {
+      "id": "mobile-purpose",
+      "type": "options",
+      "field": "purpose",
+      "step": 1,
+      "counter": "Вопрос 1 из 3",
+      "title": "Для каких работ подбираете камень?",
+      "backgroundImage": "/uploads/quiz/figma-mobile-card-bg.jpg",
+      "progressText": "Готово 0%",
+      "progressWidth": 7.99,
+      "options": [
+        {
+          "label": "Для двора/дорожек",
+          "value": "yard",
+          "image": "/uploads/quiz/figma-mobile-purpose-yard.jpg"
+        },
+        {
+          "label": "Для парковки",
+          "value": "parking",
+          "image": "/uploads/quiz/figma-mobile-purpose-parking.jpg"
+        },
+        {
+          "label": "Для облицовки",
+          "value": "facade",
+          "image": "/uploads/quiz/figma-mobile-purpose-facade.jpg"
+        },
+        {
+          "label": "Для ландшафта",
+          "value": "landscape",
+          "image": "/uploads/quiz/figma-mobile-purpose-landscape.jpg"
+        }
+      ]
+    },
+    {
+      "id": "mobile-area",
+      "type": "options",
+      "field": "area",
+      "step": 2,
+      "counter": "Вопрос 2 из 3",
+      "title": "Примерная площадь?",
+      "backgroundImage": "/uploads/quiz/figma-mobile-card-bg.jpg",
+      "progressText": "Готово 33%",
+      "progressWidth": 41.33,
+      "options": [
+        {
+          "label": "От 50-100",
+          "value": "50-100",
+          "image": "/uploads/quiz/figma-mobile-area-50-100.jpg"
+        },
+        {
+          "label": "100-200",
+          "value": "100-200",
+          "image": "/uploads/quiz/figma-mobile-area-100-200.jpg"
+        },
+        {
+          "label": "200-400",
+          "value": "200-400",
+          "image": "/uploads/quiz/figma-mobile-area-200-400.jpg"
+        },
+        {
+          "label": "400+",
+          "value": "400-plus",
+          "image": "/uploads/quiz/figma-mobile-area-400-plus.jpg"
+        }
+      ]
+    },
+    {
+      "id": "mobile-contact",
+      "type": "contact",
+      "step": 3,
+      "counter": "Вопрос 3 из 3",
+      "title": "Теперь стало понятнее 😌",
+      "backgroundImage": "/uploads/quiz/figma-mobile-card-bg.jpg",
+      "progressText": "Готово 66%",
+      "progressWidth": 67.34,
+      "leadTitle": "Рассчитаем точную стоимость",
+      "leadText": "и пришлем реальные фото со склада и новых объектов",
+      "formLabel": "Куда отправить расчет?",
+      "phoneNote": "Свяжемся с вами один раз, без навязчивых звонков!",
+      "phonePlaceholder": "+7 (000) 000-00-00*",
+      "buttonText": "Получить расчет",
+      "successMessage": "Спасибо, заявку получили."
+    }
+  ]
+}

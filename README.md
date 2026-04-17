@@ -70,7 +70,7 @@ git clone <repo> quiz.bruschatka.ru
 cd /var/www/quiz.bruschatka.ru
 cp website/.env.local.example website/.env.local
 nano website/.env.local
-COMPOSER_ALLOW_SUPERUSER=1 ./deploy/deploy.sh
+WEB_USER=app WEB_GROUP=app COMPOSER_ALLOW_SUPERUSER=1 ./deploy/deploy.sh
 ```
 
 Скрипт `deploy/deploy.sh` делает:
@@ -80,6 +80,7 @@ COMPOSER_ALLOW_SUPERUSER=1 ./deploy/deploy.sh
 - `npm ci`
 - `npm run build`
 - копирование `dashboard/dist` в `website/public/admin`
+- выставление writable-прав для пользователя PHP-FPM через `WEB_USER` / `WEB_GROUP`
 
 ## Nginx
 

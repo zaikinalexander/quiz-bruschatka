@@ -21,8 +21,8 @@
       "counter": "Вопрос 1 из 4",
       "title": "Примерная площадь мощения?",
       "backgroundImage": "/uploads/quiz/figma-desktop-card-bg.jpg",
-      "progressText": "Готово 33%",
-      "progressWidth": 41.63,
+      "progressText": "Готово 0%",
+      "progressWidth": 0,
       "options": [
         {
           "label": "От 50-100",
@@ -54,8 +54,8 @@
       "counter": "Вопрос 2 из 4",
       "title": "Какой цвет подходит?",
       "backgroundImage": "/uploads/quiz/figma-desktop-card-bg.jpg",
-      "progressText": "Готово 0%",
-      "progressWidth": 7.99,
+      "progressText": "Готово 25%",
+      "progressWidth": 25,
       "options": [
         {
           "label": "Серый",
@@ -92,8 +92,8 @@
       "counter": "Вопрос 3 из 4",
       "title": "Какую обработку рассматриваете?",
       "backgroundImage": "/uploads/quiz/figma-desktop-card-bg.jpg",
-      "progressText": "Готово 33%",
-      "progressWidth": 41.63,
+      "progressText": "Готово 50%",
+      "progressWidth": 50,
       "options": [
         {
           "label": "Колотая",
@@ -124,8 +124,8 @@
       "counter": "Вопрос 4 из 4",
       "title": "Теперь стало понятнее 😌",
       "backgroundImage": "/uploads/quiz/figma-desktop-card-bg.jpg",
-      "progressText": "Готово 66%",
-      "progressWidth": 73.86,
+      "progressText": "Готово 75%",
+      "progressWidth": 75,
       "leadTitle": "Рассчитаем точную стоимость",
       "leadText": "и пришлем реальные фото со склада и новых объектов",
       "formLabel": "Куда отправить расчет?",
@@ -144,8 +144,8 @@
       "counter": "Вопрос 1 из 4",
       "title": "Примерная площадь мощения?",
       "backgroundImage": "/uploads/quiz/figma-mobile-card-bg.jpg",
-      "progressText": "Готово 33%",
-      "progressWidth": 41.63,
+      "progressText": "Готово 0%",
+      "progressWidth": 0,
       "options": [
         {
           "label": "От 50-100",
@@ -177,8 +177,8 @@
       "counter": "Вопрос 2 из 4",
       "title": "Какой цвет подходит?",
       "backgroundImage": "/uploads/quiz/figma-mobile-card-bg.jpg",
-      "progressText": "Готово 0%",
-      "progressWidth": 7.99,
+      "progressText": "Готово 25%",
+      "progressWidth": 25,
       "options": [
         {
           "label": "Серый",
@@ -215,8 +215,8 @@
       "counter": "Вопрос 3 из 4",
       "title": "Какую обработку рассматриваете?",
       "backgroundImage": "/uploads/quiz/figma-mobile-card-bg.jpg",
-      "progressText": "Готово 33%",
-      "progressWidth": 41.63,
+      "progressText": "Готово 50%",
+      "progressWidth": 50,
       "options": [
         {
           "label": "Колотая",
@@ -247,8 +247,8 @@
       "counter": "Вопрос 4 из 4",
       "title": "Теперь стало понятнее 😌",
       "backgroundImage": "/uploads/quiz/figma-mobile-card-bg.jpg",
-      "progressText": "Готово 66%",
-      "progressWidth": 73.86,
+      "progressText": "Готово 75%",
+      "progressWidth": 75,
       "leadTitle": "Рассчитаем точную стоимость",
       "leadText": "и пришлем реальные фото со склада и новых объектов",
       "formLabel": "Куда отправить расчет?",

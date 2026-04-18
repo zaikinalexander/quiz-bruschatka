@@ -86,6 +86,16 @@ function normalizeLeadEmails(value) {
         <input v-model="general.redirectUrl" class="field__input" type="text">
       </label>
 
+      <label class="field">
+        <span class="field__label">Задержка редиректа, мс</span>
+        <input v-model.number="general.redirectDelayMs" class="field__input" type="number" min="0" step="500">
+      </label>
+
+      <label class="field">
+        <span class="field__label">Передавать ответы в URL</span>
+        <input v-model="general.redirectAppendParams" class="field__input" type="checkbox">
+      </label>
+
       <label class="field field--full">
         <span class="field__label">Почты для уведомлений</span>
         <textarea

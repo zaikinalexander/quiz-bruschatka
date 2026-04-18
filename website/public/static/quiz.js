@@ -212,23 +212,36 @@ function showCompletion(phone, answers) {
     if (config.general.submitMode === 'redirect') {
         window.setTimeout(() => {
             redirectAfterCompletion(phone, answers);
-        }, 2200);
+        }, getRedirectDelayMs());
     }
 }
 
 function redirectAfterCompletion(phone, answers) {
     const target = config.general.redirectUrl || 'https://bruschatka.ru/';
     const url = new URL(target, window.location.origin);
-    url.searchParams.set('utm_source', 'quiz.bruschatka.ru');
-    url.searchParams.set('utm_medium', 'quiz');
-    url.searchParams.set('utm_campaign', 'bruschatka_quiz');
-    url.searchParams.set('phone', phone);
 
-    answers.forEach((answer) => {
-        url.searchParams.set(answer.field, answer.value);
-    });
+    if (config.general.redirectAppendParams === true) {
+        url.searchParams.set('utm_source', 'quiz.bruschatka.ru');
+        url.searchParams.set('utm_medium', 'quiz');
+        url.searchParams.set('utm_campaign', 'bruschatka_quiz');
+        url.searchParams.set('phone', phone);
+
+        answers.forEach((answer) => {
+            url.searchParams.set(answer.field, answer.value);
+        });
+    }
 
     window.location.href = url.toString();
+}
+
+function getRedirectDelayMs() {
+    const delay = Number(config.general.redirectDelayMs);
+
+    if (!Number.isFinite(delay) || delay < 0) {
+        return 7000;
+    }
+
+    return delay;
 }
 
 function renderProgress(text, width) {

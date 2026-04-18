@@ -2,8 +2,10 @@
   "general": {
     "headlineBase": "ПОДБЕРЕМ КАМЕНЬ ПОД ВАШУ ЗАДАЧУ,",
     "headlineAccent": "ЗАФИКСИРУЕМ ЦЕНУ 2025 ГОДА",
-    "submitMode": "success",
+    "submitMode": "redirect",
     "redirectUrl": "https://bruschatka.ru/",
+    "redirectDelayMs": 7000,
+    "redirectAppendParams": false,
     "metrikaCounterId": 101014580,
     "pageBackgroundImage": "/uploads/quiz/bruschatka-page-backdrop.jpg",
     "mobilePageBackgroundImage": "/uploads/quiz/bruschatka-page-backdrop.jpg",

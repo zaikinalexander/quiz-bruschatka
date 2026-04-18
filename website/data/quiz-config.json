@@ -5,8 +5,8 @@
     "submitMode": "success",
     "redirectUrl": "https://bruschatka.ru/",
     "metrikaCounterId": 101014580,
-    "pageBackgroundImage": "/uploads/quiz/figma-desktop-page-bg.jpg",
-    "mobilePageBackgroundImage": "/uploads/quiz/figma-mobile-page-bg.jpg",
+    "pageBackgroundImage": "/uploads/quiz/bruschatka-page-backdrop.jpg",
+    "mobilePageBackgroundImage": "/uploads/quiz/bruschatka-page-backdrop.jpg",
     "leadEmails": [
       "zaikinalexandr@gmail.com",
       "info@bruschatka.ru"

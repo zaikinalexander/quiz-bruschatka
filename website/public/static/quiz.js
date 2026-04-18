@@ -27,6 +27,7 @@ const reachedGoals = new Set();
 optionButtons.forEach((button) => {
     button.addEventListener('click', () => {
         const { flow, field, value, label, title } = button.dataset;
+        const currentStep = state.currentStep[flow];
 
         state.answers[flow][field] = {
             field,
@@ -35,9 +36,19 @@ optionButtons.forEach((button) => {
             title,
         };
 
-        if (state.currentStep[flow] === 1) {
-            reachYandexGoalOnce('quiz_start');
+        if (currentStep === 1) {
+            reachYandexGoalOnce('quiz_start', { flow });
+            reachYandexGoalOnce(`quiz_${flow}_start`, { flow });
         }
+
+        trackAnswerSelect({
+            flow,
+            field,
+            value,
+            label,
+            title,
+            step: currentStep,
+        });
 
         optionButtons
             .filter((node) => node.dataset.flow === flow && node.dataset.field === field)
@@ -51,7 +62,7 @@ optionButtons.forEach((button) => {
             const nextStep = Math.min(state.currentStep[flow] + 1, totalSteps);
 
             if (nextStep > state.currentStep[flow]) {
-                reachYandexGoal(`quiz_step_${state.currentStep[flow]}`);
+                trackStepComplete(flow, state.currentStep[flow], nextStep);
             }
 
             state.currentStep[flow] = nextStep;
@@ -76,7 +87,8 @@ forms.forEach((form) => {
         const phoneTail = normalizePhoneTail(phoneInput.value);
         const phone = phoneTail ? `7${phoneTail}` : '';
 
-        reachYandexGoal('quiz_submit_click');
+        reachYandexGoal('quiz_submit_click', { flow });
+        reachYandexGoal(`quiz_${flow}_submit_click`, { flow });
         phoneError.hidden = true;
         phoneError.textContent = defaultPhoneErrorText;
         successMessage.hidden = true;
@@ -85,7 +97,7 @@ forms.forEach((form) => {
             phoneError.textContent = 'Введите корректный телефон';
             phoneError.hidden = false;
             phoneInput.focus();
-            reachYandexGoal('quiz_submit_error');
+            trackSubmitError(flow, 'phone_validation');
             return;
         }
 
@@ -118,7 +130,7 @@ forms.forEach((form) => {
                 phoneError.hidden = false;
                 submitButton.disabled = false;
                 submitButton.textContent = defaultButtonText;
-                reachYandexGoal('quiz_submit_error');
+                trackSubmitError(flow, 'server_response');
                 return;
             }
         } catch (error) {
@@ -126,11 +138,13 @@ forms.forEach((form) => {
             phoneError.hidden = false;
             submitButton.disabled = false;
             submitButton.textContent = defaultButtonText;
-            reachYandexGoal('quiz_submit_error');
+            trackSubmitError(flow, 'network');
             return;
         }
 
-        reachYandexGoal('ok_zakaz');
+        reachYandexGoal('ok_zakaz', { flow });
+        reachYandexGoal('quiz_submit_success', { flow });
+        reachYandexGoal(`quiz_${flow}_submit_success`, { flow });
 
         window.setTimeout(() => {
             submitButton.disabled = false;
@@ -145,7 +159,10 @@ forms.forEach((form) => {
     });
 
     phoneInput.addEventListener('focus', () => {
-        reachYandexGoalOnce('quiz_phone_focus');
+        const flow = form.dataset.flow;
+
+        reachYandexGoalOnce('quiz_phone_focus', { flow });
+        reachYandexGoalOnce(`quiz_${flow}_phone_focus`, { flow });
     });
 });
 
@@ -171,6 +188,8 @@ function renderStep() {
     if (!activeStep) {
         return;
     }
+
+    trackStepView(flow, currentStep, activeStep);
 
     if (activeStep.dataset.bg) {
         quizBackground.style.backgroundImage =
@@ -208,6 +227,9 @@ function showCompletion(phone, answers) {
 
     completeScreen.hidden = false;
     quizCard.classList.add('is-complete');
+    reachYandexGoal('quiz_success_screen_view', {
+        flow: getCurrentFlow(),
+    });
 
     if (config.general.submitMode === 'redirect') {
         window.setTimeout(() => {
@@ -231,7 +253,13 @@ function redirectAfterCompletion(phone, answers) {
         });
     }
 
-    window.location.href = url.toString();
+    reachYandexGoal('quiz_redirect', {
+        target: url.toString(),
+    });
+
+    window.setTimeout(() => {
+        window.location.href = url.toString();
+    }, 150);
 }
 
 function getRedirectDelayMs() {
@@ -249,19 +277,79 @@ function renderProgress(text, width) {
     progressFill.style.width = `${width}%`;
 }
 
-function reachYandexGoal(goalName) {
+function trackStepView(flow, step, activeStep) {
+    const params = {
+        flow,
+        step,
+        slideId: activeStep.dataset.slideId,
+    };
+
+    reachYandexGoalOnce('quiz_page_view');
+    reachYandexGoalOnce(`quiz_${flow}_view`, { flow });
+    reachYandexGoalOnce('quiz_step_view', params, `quiz_step_view:${flow}:${step}`);
+    reachYandexGoalOnce(`quiz_${flow}_step_${step}_view`, params);
+}
+
+function trackStepComplete(flow, step, nextStep) {
+    const params = {
+        flow,
+        step,
+        nextStep,
+    };
+
+    reachYandexGoal(`quiz_step_${step}`, params);
+    reachYandexGoal('quiz_step_complete', params);
+    reachYandexGoal(`quiz_${flow}_step_${step}_complete`, params);
+}
+
+function trackAnswerSelect({ flow, field, value, label, title, step }) {
+    const params = {
+        flow,
+        field,
+        value,
+        label,
+        title,
+        step,
+    };
+    const fieldPart = normalizeGoalPart(field);
+    const valuePart = normalizeGoalPart(value);
+
+    reachYandexGoal('quiz_answer_select', params);
+    reachYandexGoal(`quiz_answer_${fieldPart}`, params);
+    reachYandexGoal(`quiz_answer_${fieldPart}_${valuePart}`, params);
+}
+
+function trackSubmitError(flow, reason) {
+    const params = {
+        flow,
+        reason,
+    };
+
+    reachYandexGoal('quiz_submit_error', params);
+    reachYandexGoal(`quiz_submit_error_${normalizeGoalPart(reason)}`, params);
+    reachYandexGoal(`quiz_${flow}_submit_error`, params);
+}
+
+function normalizeGoalPart(value) {
+    return String(value || 'unknown')
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '_')
+        .replace(/^_+|_+$/g, '') || 'unknown';
+}
+
+function reachYandexGoal(goalName, params = {}) {
     if (typeof window.ym === 'function') {
-        window.ym(goalsCounterId, 'reachGoal', goalName);
+        window.ym(goalsCounterId, 'reachGoal', goalName, params);
     }
 }
 
-function reachYandexGoalOnce(goalName) {
-    if (reachedGoals.has(goalName)) {
+function reachYandexGoalOnce(goalName, params = {}, key = goalName) {
+    if (reachedGoals.has(key)) {
         return;
     }
 
-    reachedGoals.add(goalName);
-    reachYandexGoal(goalName);
+    reachedGoals.add(key);
+    reachYandexGoal(goalName, params);
 }
 
 function isValidPhoneTail(value) {

@@ -60,6 +60,48 @@ QUIZ_LEAD_TO=zaikinalexandr@gmail.com,info@bruschatka.ru
 
 Список адресов для заявок можно менять и из админки в разделе настроек квиза. Поддерживаются несколько адресов, по одному в строке.
 
+## Метрика и цели
+
+Счетчик Метрики подключен в `website/templates/base.html.twig`, ID берется из настройки `general.metrikaCounterId`.
+
+Базовые цели для воронки:
+
+- `quiz_page_view` - открытие страницы квиза
+- `quiz_desktop_view`, `quiz_mobile_view` - определение версии
+- `quiz_desktop_step_1_view` ... `quiz_desktop_step_4_view` - просмотры шагов desktop
+- `quiz_mobile_step_1_view` ... `quiz_mobile_step_4_view` - просмотры шагов mobile
+- `quiz_step_complete` - переход к следующему шагу
+- `quiz_start` - первый выбор ответа
+- `quiz_phone_focus` - фокус на телефоне
+- `quiz_submit_click` - клик отправки
+- `quiz_submit_error` - ошибка отправки или валидации
+- `quiz_submit_success` и `ok_zakaz` - успешная заявка
+- `quiz_success_screen_view` - показ экрана успеха
+- `quiz_redirect` - редирект на `bruschatka.ru`
+
+Детальные цели по ответам:
+
+- `quiz_answer_area`, `quiz_answer_area_50_100`, `quiz_answer_area_100_200`, `quiz_answer_area_200_400`, `quiz_answer_area_400_plus`
+- `quiz_answer_color`, `quiz_answer_color_gray`, `quiz_answer_color_dark`, `quiz_answer_color_green`, `quiz_answer_color_burgundy`, `quiz_answer_color_natural`
+- `quiz_answer_finish`, `quiz_answer_finish_chipped`, `quiz_answer_finish_sawn`, `quiz_answer_finish_tumbled`, `quiz_answer_finish_unknown`
+
+## Админка
+
+Админка доступна по адресу `/admin/` и закрыта сессионным логином через API:
+
+- `POST /api/admin/login`
+- `GET /api/admin/me`
+- `POST /api/admin/logout`
+
+Публичной остается только отправка заявки из квиза: `POST /api/lead`. Все остальные API под `/api/` требуют входа в админку.
+
+Логин и пароль задаются на сервере в `.env.local`:
+
+```dotenv
+ADMIN_USERNAME=admin
+ADMIN_PASSWORD=<admin-password>
+```
+
 ## Деплой
 
 Рекомендуемый путь на сервере:

@@ -95,6 +95,54 @@ select {
   color: var(--accent-strong);
 }
 
+.app-header__actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.app-header__link--button {
+  cursor: pointer;
+  background: transparent;
+}
+
+.auth-screen {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.auth-card {
+  width: min(420px, 100%);
+  display: grid;
+  gap: 18px;
+  padding: 28px;
+  border: 1px solid var(--panel-border);
+  border-radius: 24px;
+  background: rgba(23, 26, 22, 0.9);
+  backdrop-filter: blur(12px);
+}
+
+.auth-card__title {
+  margin: 0;
+  font-size: 30px;
+  line-height: 1.1;
+}
+
+.auth-card__text,
+.auth-card__error {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.auth-card__error {
+  color: var(--danger);
+}
+
 .sidebar {
   display: grid;
   gap: 10px;

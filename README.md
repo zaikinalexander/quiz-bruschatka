@@ -79,6 +79,13 @@ QUIZ_LEAD_TO=zaikinalexandr@gmail.com,info@bruschatka.ru
 - `quiz_success_screen_view` - показ экрана успеха
 - `quiz_redirect` - редирект на `bruschatka.ru`
 
+После успешной заявки редирект на `bruschatka.ru` всегда получает UTM-метки:
+
+- `utm_source=quiz.bruschatka.ru`
+- `utm_medium=quiz`
+- `utm_campaign=bruschatka_quiz`
+- `utm_content=desktop_success_redirect` или `mobile_success_redirect`
+
 Детальные цели по ответам:
 
 - `quiz_answer_area`, `quiz_answer_area_50_100`, `quiz_answer_area_100_200`, `quiz_answer_area_200_400`, `quiz_answer_area_400_plus`

@@ -241,11 +241,11 @@ function showCompletion(phone, answers) {
 function redirectAfterCompletion(phone, answers) {
     const target = config.general.redirectUrl || 'https://bruschatka.ru/';
     const url = new URL(target, window.location.origin);
+    const flow = getCurrentFlow();
+
+    appendRedirectTrackingParams(url, flow);
 
     if (config.general.redirectAppendParams === true) {
-        url.searchParams.set('utm_source', 'quiz.bruschatka.ru');
-        url.searchParams.set('utm_medium', 'quiz');
-        url.searchParams.set('utm_campaign', 'bruschatka_quiz');
         url.searchParams.set('phone', phone);
 
         answers.forEach((answer) => {
@@ -260,6 +260,13 @@ function redirectAfterCompletion(phone, answers) {
     window.setTimeout(() => {
         window.location.href = url.toString();
     }, 150);
+}
+
+function appendRedirectTrackingParams(url, flow) {
+    url.searchParams.set('utm_source', 'quiz.bruschatka.ru');
+    url.searchParams.set('utm_medium', 'quiz');
+    url.searchParams.set('utm_campaign', 'bruschatka_quiz');
+    url.searchParams.set('utm_content', `${flow}_success_redirect`);
 }
 
 function getRedirectDelayMs() {

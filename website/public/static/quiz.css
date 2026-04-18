@@ -43,7 +43,8 @@ img {
 
 .quiz-page {
     position: relative;
-    min-height: 665px;
+    min-height: max(665px, 100vh);
+    min-height: max(665px, 100svh);
     overflow: hidden;
     background: #000000;
 }
@@ -65,7 +66,8 @@ img {
 .quiz-shell {
     position: relative;
     z-index: 1;
-    min-height: 665px;
+    min-height: max(665px, 100vh);
+    min-height: max(665px, 100svh);
     padding: 103px 20px 66px;
     display: flex;
     flex-direction: column;
@@ -468,7 +470,8 @@ img {
 
 @media (max-width: 760px) {
     .quiz-page {
-        min-height: 765px;
+        min-height: max(765px, 100vh);
+        min-height: max(765px, 100svh);
     }
 
     .page-backdrop {
@@ -478,7 +481,8 @@ img {
     }
 
     .quiz-shell {
-        min-height: 765px;
+        min-height: max(765px, 100vh);
+        min-height: max(765px, 100svh);
         padding: 65px 16px 0;
     }
 

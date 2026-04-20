@@ -142,7 +142,9 @@ forms.forEach((form) => {
             return;
         }
 
-        reachYandexGoal('ok_zakaz', { flow });
+        if (shouldReachOkZakaz(flow)) {
+            reachYandexGoal('ok_zakaz', { flow });
+        }
         reachYandexGoal('quiz_submit_success', { flow });
         reachYandexGoal(`quiz_${flow}_submit_success`, { flow });
 
@@ -335,6 +337,12 @@ function trackSubmitError(flow, reason) {
     reachYandexGoal('quiz_submit_error', params);
     reachYandexGoal(`quiz_submit_error_${normalizeGoalPart(reason)}`, params);
     reachYandexGoal(`quiz_${flow}_submit_error`, params);
+}
+
+function shouldReachOkZakaz(flow) {
+    const areaValue = state.answers?.[flow]?.area?.value;
+
+    return ['100-200', '200-400', '400-plus'].includes(areaValue);
 }
 
 function normalizeGoalPart(value) {
